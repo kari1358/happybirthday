@@ -1,0 +1,370 @@
+{
+  "project": {
+    "name": "Happy Birthday Image Generator",
+    "id": "new",
+    "creationTs": 1710439748980,
+    "lastModifiedTs": 1710715922941,
+    "userSetData": {
+      "description": "Turn on your camera, upload a picture, and send what you've got to your friends and family to wish them happy birthday.",
+      "tags": [],
+      "contactURL": "",
+      "tutorialYouTube": ""
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "live_camera_01104n",
+        "nodeSpecId": "live_camera",
+        "customData": {
+          "runContinuously": true,
+          "initialWidth": 240,
+          "initialHeight": 320,
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 240,
+          "previewHeight": 320
+        },
+        "uiData": {
+          "posX": 11.85108470916748,
+          "posY": 22.547224044799805,
+          "width": 176,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": true
+        }
+      },
+      {
+        "id": "input_image_mwzytz",
+        "nodeSpecId": "input_image",
+        "customData": {
+          "initialWidth": 448,
+          "initialHeight": 240,
+          "previewX": 352,
+          "previewY": 16,
+          "previewWidth": 448,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 16,
+          "posY": 192,
+          "width": 176,
+          "height": 180,
+          "selected": false
+        },
+        "propValues": {
+          "urls": [
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic1.jpg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic2.jpeg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic3.jpg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic4.jpeg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic5.jpg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic6.jpg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic7.jpeg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic8.jpg",
+            "https://storage.googleapis.com/tfweb/visualblocks-input-images/pic9.jpg",
+            "image=yvs8p9"
+          ],
+          "gridColumnCount": 3,
+          "allowUserUpload": true,
+          "selectedImageUrl": "image=yvs8p9",
+          "hidePreview": false
+        }
+      },
+      {
+        "id": "landmark_visualizer_83d5e8",
+        "nodeSpecId": "landmark_visualizer",
+        "customData": {
+          "previewX": 1168,
+          "previewY": 272,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 656,
+          "posY": 288,
+          "width": 185.603515625,
+          "height": 205,
+          "selected": false
+        },
+        "propValues": {
+          "keypointScale": 0.5,
+          "color": "#08f7fe",
+          "boundingBox": false,
+          "hidePreview": true
+        },
+        "incomingEdges": {
+          "landmarkResult": [
+            {
+              "sourceNodeId": "gesture_recognition_z48l2l",
+              "outputId": "landmarkResult"
+            }
+          ]
+        }
+      },
+      {
+        "id": "image_mixer_3a3ywe",
+        "nodeSpecId": "image_mixer",
+        "customData": {
+          "previewX": 816,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 1333.89892578125,
+          "posY": 216.6938934326172,
+          "width": 224,
+          "height": 254,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "source-over",
+          "hidePreview": false
+        },
+        "inputValues": {
+          "topText": "",
+          "midText": "",
+          "bottomText": "Happy birthday, Jason!"
+        },
+        "incomingEdges": {
+          "image1": [
+            {
+              "sourceNodeId": "image_mixer_9dqhqk",
+              "outputId": "image"
+            }
+          ],
+          "image2": [
+            {
+              "sourceNodeId": "shader_processing_74eo3i",
+              "outputId": "image"
+            }
+          ],
+          "topText": [
+            {
+              "sourceNodeId": "speech_to_text_stream_j9pj3j",
+              "outputId": "text"
+            }
+          ]
+        }
+      },
+      {
+        "id": "gesture_recognition_z48l2l",
+        "nodeSpecId": "gesture_recognition",
+        "customData": {
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 272,
+          "posY": 256,
+          "width": 240,
+          "height": 92,
+          "selected": false
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_01104n",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "body_segmentation_wfpg5d",
+        "nodeSpecId": "body_segmentation",
+        "customData": {
+          "previewX": 816,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 272,
+          "posY": 80,
+          "width": 240,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "modelOption": "MediaPipeSelfieSegmentation"
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_01104n",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mask_visualizer_r9vt8e",
+        "nodeSpecId": "mask_visualizer",
+        "customData": {
+          "previewX": 816,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 656,
+          "posY": -64,
+          "width": 176,
+          "height": 179,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "fg-image",
+          "hidePreview": true
+        },
+        "inputValues": {
+          "color": "#22e8dd"
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_01104n",
+              "outputId": "image"
+            }
+          ],
+          "segmentationResult": [
+            {
+              "sourceNodeId": "body_segmentation_wfpg5d",
+              "outputId": "segmentationResult"
+            }
+          ]
+        }
+      },
+      {
+        "id": "image_mixer_9dqhqk",
+        "nodeSpecId": "image_mixer",
+        "customData": {
+          "previewX": 832,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 960,
+          "posY": 32,
+          "width": 224,
+          "height": 254,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "destination-atop",
+          "hidePreview": true
+        },
+        "inputValues": {
+          "topText": "",
+          "midText": "",
+          "bottomText": ""
+        },
+        "incomingEdges": {
+          "image1": [
+            {
+              "sourceNodeId": "mask_visualizer_r9vt8e",
+              "outputId": "maskedImage"
+            }
+          ],
+          "image2": [
+            {
+              "sourceNodeId": "input_image_mwzytz",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "shader_processing_74eo3i",
+        "nodeSpecId": "shader_processing",
+        "customData": {
+          "initialWidth": 240,
+          "initialHeight": 320,
+          "runContinuously": true,
+          "previewX": 896,
+          "previewY": 272,
+          "previewWidth": 240,
+          "previewHeight": 320
+        },
+        "uiData": {
+          "posX": 960,
+          "posY": 352,
+          "width": 224,
+          "height": 229,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": true
+        },
+        "inputValues": {
+          "shader": "vfx-mirror"
+        },
+        "incomingEdges": {
+          "shader": [
+            {
+              "sourceNodeId": "code_editor_cssiyp",
+              "outputId": "code"
+            }
+          ],
+          "channel0": [
+            {
+              "sourceNodeId": "landmark_visualizer_83d5e8",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "speech_to_text_stream_j9pj3j",
+        "nodeSpecId": "speech_to_text_stream",
+        "customData": {
+          "previewX": 16,
+          "previewY": 272,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 16,
+          "posY": 432,
+          "width": 176,
+          "height": 68,
+          "selected": false
+        }
+      },
+      {
+        "id": "code_editor_cssiyp",
+        "nodeSpecId": "code_editor",
+        "customData": {
+          "initialWidth": 304,
+          "initialHeight": 368,
+          "previewX": 272,
+          "previewY": 272,
+          "previewWidth": 608,
+          "previewHeight": 368
+        },
+        "uiData": {
+          "posX": 656,
+          "posY": 528,
+          "width": 192,
+          "height": 105,
+          "selected": true
+        },
+        "propValues": {
+          "curCode": "void mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    vec2 uv = fragCoord.xy / iResolution.xy;\n    vec2 original_uv = uv;\n    fragColor = vec4(0.0, 0.0, 0.0, 0.0);\n    float t_offset = sin(iTime);\n    vec4 texel0 = fragColor;\n    fragColor = vec4(0.0, 0.0, 0.0, 0.0);\n    float frequencyFactor = 10.0; // Keeps the increased frequency of zig-zags\n    for (float y = fragCoord.y; y >= 0.0; y -= 1.0) {\n        float dy = original_uv.y - uv.y;\n        uv.y = y / iResolution.y;\n        t_offset -= 0.5 * sin((y) / iResolution.y);\n        // Updated for 60% thinner zig-zags\n        uv.x = original_uv.x + ((0.6 / 5.0) * 0.4) * sin(t_offset * ((y - fragCoord.y) / iResolution.y) * frequencyFactor);\n        uv = clamp(uv, vec2(0.1,0.1), vec2(0.9,0.9));\n        texel0 = texture(iChannel0, uv);\n        if (texel0.a != 0.0) {\n            // Change color to yellow and adjust transparency based on dy\n            fragColor = vec4(1.0, 1.0, 0.0, 1.0) * vec4(1.0, vec2(1.0) - vec2(dy), 1.0);\n            break;\n        }\n    }\n}\n",
+          "hidePreview": true
+        },
+        "inputValues": {
+          "initialCode": ""
+        }
+      }
+    ]
+  },
+  "customNodeUrls": []
+}
